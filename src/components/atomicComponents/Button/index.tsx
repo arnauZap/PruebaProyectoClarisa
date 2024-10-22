@@ -1,7 +1,8 @@
 import React from 'react'
 import { Button as NativeButton, ButtonProps } from 'react-native-paper'
-import styles from './styles'
+import componentStyles from './styles'
 import { ViewStyle } from 'react-native'
+import { useTheme } from '../../../hooks/useTheme'
 
 export interface IZButtonProps extends Omit<ButtonProps, 'children'> {
 	onPress: () => void
@@ -17,13 +18,15 @@ const Button: React.FC<IZButtonProps> = ({
 	style,
 	...buttonprops
 }) => {
+	const theme = useTheme()
+	const styles = componentStyles({theme,mode})
 	return (
 		<NativeButton
 			{...buttonprops}
 			mode={mode}
 			onPress={onPress}
-			style={{ ...styles(mode).buttonDecoration, ...style }}
-			labelStyle={styles(mode).labelStyle}
+			style={{ ...styles.buttonDecoration, ...style }}
+			labelStyle={styles.labelStyle}
 		>
 			{children}
 		</NativeButton>

@@ -108,8 +108,8 @@ android {
 
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
-
-    namespace "com.pruebadeconcepto"
+    
+    namespace "com.arnzap.PruebaDeConcepto"
     defaultConfig {
         applicationId 'com.arnzap.PruebaDeConcepto'
         minSdkVersion rootProject.ext.minSdkVersion

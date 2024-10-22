@@ -1,23 +1,22 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native'
-import Color from '../../constants/Color'
 import FONT_FAMILY from '../../../constants/FontFamily'
-import { FONT_SIZE } from '../../constants/styles'
+import { FONT_SIZE } from '../../../constants/styles'
 interface Styles {
 	buttonDecoration: ViewStyle
 	labelStyle: TextStyle
 }
 
-const styles = (mode: string): Styles => {
+const styles = (props:{theme:any,mode: string}): Styles => {
 	return StyleSheet.create({
 		buttonDecoration: {
 			borderRadius: 50,
 			backgroundColor:
-				mode === 'contained' ? Color.primary : Color.whiteBackground,
-			borderColor: mode === 'outlined' ? Color.primary : 'transparent',
-			borderWidth: mode === 'outlined' ? 4 : 0
+				props.mode === 'contained' ? props.theme.primary : props.theme.whiteBackground,
+			borderColor: props.mode === 'outlined' ? props.theme.primary : 'transparent',
+			borderWidth: props.mode === 'outlined' ? 4 : 0
 		},
 		labelStyle: {
-			color: mode === 'contained' ? Color.whiteText : Color.primary,
+			color: props.mode === 'contained' ? props.theme.whiteText : props.theme.primary,
 			fontSize: FONT_SIZE.s,
 			fontFamily: FONT_FAMILY.principal_bold,
 			paddingTop: 3,

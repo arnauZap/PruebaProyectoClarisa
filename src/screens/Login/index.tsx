@@ -1,19 +1,27 @@
-import React, { useState } from "react";
-import styles from "./Login.styles"
-import { View } from "react-native"
-import Text from "../../components/atomicComponents/Text"
-import TextInput from "../../components/atomicComponents/TextInput"
-import Button from "../../components/atomicComponents/Button"
+import React, { useState } from 'react'
+import styles from './Login.styles'
+import { View } from 'react-native'
+import Text from '../../components/atomicComponents/Text'
+import TextInput from '../../components/atomicComponents/TextInput'
+import Button from '../../components/atomicComponents/Button'
+import AuthService from '../../services/AuthService'
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // Aquí puedes manejar la lógica de autenticación
-    console.log("Email:", email);
-    console.log("Password:", password);
-  };
+    console.log('Email:', email)
+    console.log('Password:', password)
+    try {
+      const response = await AuthService.signIn(email, password)
+      console.log(`handleSubmit ~ response:`, response)
+    } catch (error) {
+      console.log(`handleSubmit ~ error:`, error)
+      
+    }
+  }
 
   return (
     <View style={styles.loginContainer}>
@@ -38,11 +46,9 @@ const Login = () => {
           secureTextEntry
         />
       </View>
-      <Button onPress={handleSubmit} >Login</Button>
+      <Button onPress={handleSubmit}>Login</Button>
     </View>
-  );
-};
+  )
+}
 
-
-
-export default Login;
+export default Login
