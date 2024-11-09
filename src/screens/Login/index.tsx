@@ -6,7 +6,7 @@ import TextInput from '../../components/atomicComponents/TextInput'
 import Button from '../../components/atomicComponents/Button'
 import AuthService from '../../services/AuthService'
 
-const Login = () => {
+const Login = (props:any) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -17,8 +17,9 @@ const Login = () => {
     try {
       const response = await AuthService.signIn(email, password)
       console.log(`handleSubmit ~ response:`, response)
-    } catch (error) {
-      console.log(`handleSubmit ~ error:`, error)
+      props.navigation.navigate('Payment')
+    } catch (error:any) {
+      console.log(`handleSubmit ~ error:`, error.message)
       
     }
   }

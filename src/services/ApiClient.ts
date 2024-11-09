@@ -143,18 +143,21 @@ class ApiClient {
         } as any)
         .then((response) => {
           if (response.status < 200 || response.status >= 300) {
+            console.log(`ApiClient ~ error response.data:`, response.data)
             throw new ApiClientError(response.status, response.data)
           } else return response.data
         })
         .catch((error) => {
+          console.log(`ApiClient ~ error:`, error.message)
           throw new ApiClientError(
             error.response?.status ?? 400,
-            error.response?.data ?? error.message
+            error.message ?? error.response?.data
           )
         })
 
       return data
-    } catch (error) {
+    } catch (error: any) {
+      console.log(`ApiClient ~ error2:`, error.message)
       throw new ApiClientError(
         (error as any).response?.status ?? 500,
         (error as any).message

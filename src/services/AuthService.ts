@@ -21,9 +21,6 @@ type AuthenticateResponse = {
 }
 class AuthService {
 	
-
-
-
 	public static signIn = async (username: string, password: string) => {
 		const response = await ApiClient.get(
 			BACKEND_BASE_URL_V1,
